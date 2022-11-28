@@ -13,13 +13,13 @@ import { MAX_LOTTERIES_REQUEST_SIZE } from './getPerformancesData'
 interface RoundDataAndUserTickets {
   performanceId: string
   userTickets: PerformanceTicket[]
-  finalProphecy: string
+  finalBet: string
 }
 
 const fetchGDERewardsForTickets = async (
   winningTickets: PerformanceTicket[],
   chainId?: number,
-): Promise<{ ticketsWithUnclaimedRewards: PerformanceTicket[]; GDETotal: BigNumber }> => {
+): Promise<{ ticketsWithUnclaimedRewards: PerformanceTicket[]; gdeTotal: BigNumber }> => {
   const prophesyAddress = getBetAddress(chainId)
 
   const calls = winningTickets.map((winningTicket) => {
@@ -34,25 +34,25 @@ const fetchGDERewardsForTickets = async (
   try {
     const GDERewards = await multicallv2({ abi: prophesyAbi, calls, chainId })
 
-    const GDETotal = GDERewards.reduce((accum: BigNumber, GDEReward: EthersBigNumber[]) => {
+    const gdeTotal = GDERewards.reduce((accum: BigNumber, GDEReward: EthersBigNumber[]) => {
       return accum.plus(new BigNumber(GDEReward[0].toString()))
     }, BIG_ZERO)
 
     const ticketsWithUnclaimedRewards = winningTickets.map((winningTicket, index) => {
       return { ...winningTicket, GDEReward: GDERewards[index] }
     })
-    return { ticketsWithUnclaimedRewards, GDETotal }
+    return { ticketsWithUnclaimedRewards, gdeTotal }
   } catch (error) {
     console.error(error)
-    return { ticketsWithUnclaimedRewards: null, GDETotal: null }
+    return { ticketsWithUnclaimedRewards: null, gdeTotal: null }
   }
 }
 
-const getRewardBracketByNumber = (ticketNumber: string, finalProphecy: string): number => {
+const getRewardBracketByNumber = (ticketNumber: string, finalBet: string): number => {
   // Winning numbers are evaluated right-to-left in the smart contract, so we reverse their order for validation here:
   // i.e. '1123456' should be evaluated as '6543211'
   const ticketNumAsArray = ticketNumber.split('').reverse()
-  const winningNumsAsArray = finalProphecy.split('').reverse()
+  const winningNumsAsArray = finalBet.split('').reverse()
   const matchingNumbers = []
 
   // The number at index 6 in all tickets is 1 and will always match, so finish at index 5
@@ -72,7 +72,7 @@ export const getWinningTickets = async (
   roundDataAndUserTickets: RoundDataAndUserTickets,
   chainId?: number,
 ): Promise<PerformanceTicketClaimData> => {
-  const { performanceId, userTickets, finalProphecy } = roundDataAndUserTickets
+  const { performanceId, userTickets, finalBet } = roundDataAndUserTickets
 
   const ticketsWithRewardBrackets = userTickets.map((ticket) => {
     return {
@@ -80,7 +80,7 @@ export const getWinningTickets = async (
       id: ticket.id,
       number: ticket.number,
       status: ticket.status,
-      won: ticket.number === finalProphecy,
+      won: ticket.number === finalBet,
     }
   })
 
@@ -91,13 +91,13 @@ export const getWinningTickets = async (
   const unclaimedWinningTickets = allWinningTickets.filter((ticket) => !ticket.status)
 
   if (unclaimedWinningTickets.length > 0) {
-    const { ticketsWithUnclaimedRewards, GDETotal } = await fetchGDERewardsForTickets(unclaimedWinningTickets, chainId)
+    const { ticketsWithUnclaimedRewards, gdeTotal } = await fetchGDERewardsForTickets(unclaimedWinningTickets, chainId)
 
-    return { ticketsWithUnclaimedRewards, allWinningTickets, GDETotal, performanceId }
+    return { ticketsWithUnclaimedRewards, allWinningTickets, gdeTotal, performanceId }
   }
 
   if (allWinningTickets.length > 0) {
-    return { ticketsWithUnclaimedRewards: null, allWinningTickets, GDETotal: null, performanceId }
+    return { ticketsWithUnclaimedRewards: null, allWinningTickets, gdeTotal: null, performanceId }
   }
 
   return null
@@ -105,7 +105,7 @@ export const getWinningTickets = async (
 
 const getWinningNumbersForRound = (targetRoundId: string, performancesData: PerformanceRoundGraphEntity[]) => {
   const targetRound = performancesData.find((pastPerformance) => pastPerformance.performanceId === targetRoundId)
-  return targetRound?.finalProphecy?.toString()
+  return targetRound?.finalBet?.toString()
 }
 
 const fetchUnclaimedUserRewards = async (
@@ -152,7 +152,7 @@ const fetchUnclaimedUserRewards = async (
     const roundsWithTickets = userTicketData.filter((roundData) => roundData?.userTickets?.length > 0)
 
     const roundDataAndWinningTickets = roundsWithTickets.map((roundData) => {
-      return { ...roundData, finalProphecy: getWinningNumbersForRound(roundData.performanceId, performancesData) }
+      return { ...roundData, finalBet: getWinningNumbersForRound(roundData.performanceId, performancesData) }
     })
 
     const winningTicketsForPastRounds = await Promise.all(

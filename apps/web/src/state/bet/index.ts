@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { LotteryTicket, PerformanceStatus, PerformanceTicket } from 'config/constants/types'
-import { PerformanceRoundGraphEntity, PerformanceUserGraphEntity, ProphesyResponse, BetState } from 'state/types'
+import { PerformanceRoundGraphEntity, PerformanceUserGraphEntity, TicketResponse, BetState } from 'state/types'
 import { fetchPerformance, fetchLatestPerformanceIdAndMaxBuy } from './helpers'
 import getPerformancesData from './getPerformancesData'
 import getUserPerformanceData, { getGraphLotteryUser } from './getUserPerformanceData'
@@ -43,7 +43,7 @@ export const selectPerformance = createAsyncThunk<string, { performanceId: strin
   async ({ performanceId }) => performanceId,
 )
 
-export const fetchLatestPerformance = createAsyncThunk<ProphesyResponse, { performanceId: string }>(
+export const fetchLatestPerformance = createAsyncThunk<TicketResponse, { performanceId: string }>(
   'bet/fetchLatestPerformance',
   async ({ performanceId }) => {
     const performanceInfo = await fetchPerformance(performanceId)
@@ -51,7 +51,7 @@ export const fetchLatestPerformance = createAsyncThunk<ProphesyResponse, { perfo
   },
 )
 
-export const fetchCurrentPerformance = createAsyncThunk<ProphesyResponse, { performanceId: string }>(
+export const fetchCurrentPerformance = createAsyncThunk<TicketResponse, { performanceId: string }>(
   'bet/fetchCurrentPerformance',
   async ({ performanceId }) => fetchPerformance(performanceId),
 )
@@ -126,7 +126,7 @@ export const ProphesySlice = createSlice({
         userTickets: { ...initialState.currentPerformance.userTickets },
       }
     })
-    builder.addCase(fetchCurrentPerformance.fulfilled, (state, action: PayloadAction<ProphesyResponse>) => {
+    builder.addCase(fetchCurrentPerformance.fulfilled, (state, action: PayloadAction<TicketResponse>) => {
       state.currentPerformance = { ...state.currentPerformance, ...action.payload } as any
     })
     builder.addCase(fetchLatestPerformanceId.fulfilled, (state, action: PayloadAction<PublicPerformanceData>) => {

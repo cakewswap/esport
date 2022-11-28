@@ -242,6 +242,6 @@ export interface PerformanceTicket {
 export interface PerformanceTicketClaimData {
   ticketsWithUnclaimedRewards: PerformanceTicket[]
   allWinningTickets: PerformanceTicket[]
-  GDETotal: BigNumber
+  gdeTotal: BigNumber
   performanceId: string
 }

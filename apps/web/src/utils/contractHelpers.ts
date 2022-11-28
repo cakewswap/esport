@@ -168,7 +168,7 @@ export const getContract = ({
 }
 
 export const getBetContract = (signer?: Signer | Provider) => {
-  return getContract({ abi: betAbi, address: getBetAddress(), signer }) as Erc20
+  return getContract({ abi: betAbi, address: getBetAddress(), signer }) as any
 }
 export const getBep20Contract = (address: string, signer?: Signer | Provider) => {
   return getContract({ abi: bep20Abi, address, signer }) as Erc20

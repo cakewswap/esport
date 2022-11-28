@@ -23,7 +23,7 @@ export const processViewPerformanceSuccessResponse = (response, performanceId: s
     startTime,
     endTime,
     treasuryFee,
-    finalProphecy,
+    finalBet,
     amountCollected,
     amountWinCollected,
     amountDrawCollected,
@@ -35,7 +35,7 @@ export const processViewPerformanceSuccessResponse = (response, performanceId: s
   return {
     isLoading: false,
     performanceId,
-    finalProphecy,
+    finalBet,
     home,
     away,
     homeGoal,
@@ -62,7 +62,7 @@ const processViewLotteryErrorResponse = (performanceId: string): PerformanceResp
     treasuryFee: '',
     homeGoal: 0,
     awayGoal: 0,
-    finalProphecy: null,
+    finalBet: null,
     amountCollected: '0',
     amountWinCollected: '0',
     amountDrawCollected: '0',
@@ -142,7 +142,7 @@ export const fetchLastPerformanceId = async (chainId?: number) => {
   }
 }
 
-const IGNORE = [4, 8]
+const IGNORE = []
 
 export const getRoundIdsArray = (latestPerformanceId: string, round?: boolean): string[] => {
   const currentIdAsInt = parseInt(latestPerformanceId, 10) + (round ? 1 : 0)

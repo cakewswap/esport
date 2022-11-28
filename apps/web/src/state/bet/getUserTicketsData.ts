@@ -1,4 +1,3 @@
-import { LotteryV2 } from 'config/abi/types'
 import { TICKET_LIMIT_PER_REQUEST } from 'config/constants/lottery'
 import { PerformanceTicket } from 'config/constants/types'
 import { getBetContract } from 'utils/contractHelpers'
@@ -6,7 +5,7 @@ import { getBetContract } from 'utils/contractHelpers'
 const betContract = getBetContract()
 
 export const processRawTicketsResponse = (
-  ticketsResponse: Awaited<ReturnType<LotteryV2['viewUserInfoForPerformanceId']>>,
+  ticketsResponse: Awaited<ReturnType<any['viewUserInfoForPerformanceId']>>,
 ): PerformanceTicket[] => {
   const [ticketIds, ticketNumbers, ticketStatuses] = ticketsResponse
 

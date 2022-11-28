@@ -28,23 +28,30 @@ const withVanillaExtract = createVanillaExtractPlugin()
 const sentryWebpackPluginOptions =
   process.env.VERCEL_ENV === 'production'
     ? {
-      // Additional config options for the Sentry Webpack plugin. Keep in mind that
-      // the following options are set automatically, and overriding them is not
-      // recommended:
-      //   release, url, org, project, authToken, configFile, stripPrefix,
-      //   urlPrefix, include, ignore
-      silent: false, // Logging when deploying to check if there is any problem
-      validate: true,
-      // For all available options, see:
-      // https://github.com/getsentry/sentry-webpack-plugin#options.
-    }
+        // Additional config options for the Sentry Webpack plugin. Keep in mind that
+        // the following options are set automatically, and overriding them is not
+        // recommended:
+        //   release, url, org, project, authToken, configFile, stripPrefix,
+        //   urlPrefix, include, ignore
+        silent: false, // Logging when deploying to check if there is any problem
+        validate: true,
+        // For all available options, see:
+        // https://github.com/getsentry/sentry-webpack-plugin#options.
+      }
     : {
-      silent: true, // Suppresses all logs
-      dryRun: !process.env.SENTRY_AUTH_TOKEN,
-    }
+        silent: true, // Suppresses all logs
+        dryRun: !process.env.SENTRY_AUTH_TOKEN,
+      }
 
 /** @type {import('next').NextConfig} */
 const config = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
   compiler: {
     styledComponents: true,
   },

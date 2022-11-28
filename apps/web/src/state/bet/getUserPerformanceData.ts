@@ -1,7 +1,7 @@
 import { request, gql } from 'graphql-request'
 import { GRAPH_API_LOTTERY } from 'config/constants/endpoints'
 import { PerformanceTicket } from 'config/constants/types'
-import { PerformanceUserGraphEntity, ProphesyResponse, UserPerformance } from 'state/types'
+import { PerformanceResponse, PerformanceUserGraphEntity, UserPerformance } from 'state/types'
 import { getRoundIdsArray, fetchMultiplePerformances, hasRoundBeenClaimed } from './helpers'
 import { fetchUserTicketsForMultipleRounds } from './getUserTicketsData'
 
@@ -12,7 +12,7 @@ type UserLotteriesWhere = { lottery_in?: string[] }
 
 const applyNodeDataToUserGraphResponse = (
   userNodeData: { performanceId: string; userTickets: PerformanceTicket[] }[],
-  performanceNodeData: ProphesyResponse[],
+  performanceNodeData: PerformanceResponse[],
 ): UserPerformance[] => {
   //   If no graph rounds response - return node data
   return performanceNodeData.map((nodeRound) => {

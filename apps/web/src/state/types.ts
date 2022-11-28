@@ -627,6 +627,7 @@ export interface State {
   predictions: PredictionsState
   lottery: LotteryState
   pottery: PotteryState
+  bet: any
 }
 
 export interface PerformanceResponse extends PerformanceRoundGenerics {
@@ -644,7 +645,7 @@ interface PerformanceRoundGenerics {
   startTime: string
   endTime: string
   treasuryFee: string
-  finalProphecy: string
+  finalBet: string
   home?: Team
   away?: Team
   homeGoal?: number
@@ -661,4 +662,96 @@ export interface PerformanceRound extends PerformanceRoundGenerics {
   cakePerBracket: SerializedBigNumber[]
   countWinnersPerBracket: SerializedBigNumber[]
   rewardsBreakdown: SerializedBigNumber[]
+}
+
+export interface PerformanceRoundGraphEntity {
+  id: string
+  performanceId: string
+  totalUsers: string
+  totalPerformances: string
+  winningProphecis: string
+  status: PerformanceStatus
+  finalBet: string
+  treasuryFee: string
+  startTime: string
+  endTime: string
+  home?: Team
+  away?: Team
+  amountCollected: SerializedBigNumber
+  amountWinCollected: SerializedBigNumber
+  amountDrawCollected: SerializedBigNumber
+  amountLoseCollected: SerializedBigNumber
+}
+
+export interface UserPerformance {
+  claimed: boolean
+  performanceId: string
+  status: PerformanceStatus
+  endTime: string
+  totalTickets: string
+  tickets?: PerformanceTicket[]
+}
+export interface PerformanceUserGraphEntity {
+  account: string
+  totalgde: string
+  totalTickets: string
+  performances: UserPerformance[]
+}
+
+export interface PerformanceTicket {
+  id: string
+  number: string
+  status: boolean
+  amount?: number
+  performanceId?: string
+  GDEReward?: string
+}
+
+export interface PerformanceTicketClaimData {
+  ticketsWithUnclaimedRewards: PerformanceTicket[]
+  allWinningTickets: PerformanceTicket[]
+  gdeTotal: BigNumber
+  performanceId: string
+}
+
+export enum PerformanceProphecy {
+  WIN = 1,
+  DRAW = 2,
+  LOSE = 3,
+}
+interface ProphesyRoundGenerics {
+  isLoading?: boolean
+  id?: string
+  home?: Team
+  away?: Team
+  performanceId: string
+  status: PerformanceStatus
+  startTime: string
+  endTime: string
+  treasuryFee: string
+  finalBet: PerformanceProphecy
+}
+export interface TicketResponse extends ProphesyRoundGenerics {
+  amountCollected: SerializedBigNumber
+  amountWinCollected: SerializedBigNumber
+  amountDrawCollected: SerializedBigNumber
+  amountLoseCollected: SerializedBigNumber
+}
+
+export interface BetState {
+  currentPerformanceId: string
+  latestPerformanceId: string
+  maxPriceProphecyIngde: string
+  isTransitioning: boolean
+  currentPerformance?: PerformanceRoundGraphEntity & { userTickets?: PerformanceRoundUserTickets }
+  home?: Team
+  away?: Team
+  treasuryFee?: string
+  performancesData?: PerformanceRoundGraphEntity[]
+  userPerformanceData?: PerformanceUserGraphEntity
+}
+
+export interface PerformanceRoundUserTickets {
+  isLoading?: boolean
+  tickets?: PerformanceTicket[]
 }

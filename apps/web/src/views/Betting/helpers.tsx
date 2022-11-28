@@ -33,7 +33,7 @@ export const dateTimeOptions: Intl.DateTimeFormatOptions = {
   ...timeOptions,
 }
 
-export const processProphesyResponse = (
+export const processTicketResponse = (
   performanceData: PerformanceResponse & { userTickets?: PerformanceRoundUserTickets },
 ): PerformanceRound => {
   const { amountCollected: amountCollectedAsString } = performanceData
@@ -48,6 +48,6 @@ export const processProphesyResponse = (
     endTime: performanceData.endTime,
     treasuryFee: performanceData.treasuryFee,
     amountCollected: amountCollectedAsString,
-    finalProphecy: performanceData.finalProphecy,
+    finalBet: performanceData.finalBet,
   }
 }

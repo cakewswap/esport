@@ -23,7 +23,7 @@ import FinishedRoundTable from './FinishedRoundTable'
 import { WhiteBunny } from '../../svgs'
 import BuyTicketsButton from '../BuyTicketsButton'
 import PreviousRoundCardBody from '../PreviousRoundCard/Body'
-import { processProphesyResponse, getDrawnDate } from '../../helpers'
+import { processTicketResponse, getDrawnDate } from '../../helpers'
 import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
 
 interface YourHistoryCardProps {
@@ -71,7 +71,7 @@ const YourHistoryCard: React.FC<React.PropsWithChildren<YourHistoryCardProps>> =
     setShouldShowRoundDetail(true)
     setSelectedLotteryId(lotteryId)
     const lotteryData = await fetchLottery(lotteryId)
-    const processedLotteryData = processProphesyResponse(lotteryData)
+    const processedLotteryData = processTicketResponse(lotteryData)
     setSelectedLotteryNodeData(processedLotteryData)
   }
 

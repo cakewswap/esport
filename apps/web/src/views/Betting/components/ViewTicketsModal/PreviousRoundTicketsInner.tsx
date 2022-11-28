@@ -23,7 +23,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import orderBy from 'lodash/orderBy'
 import WinningNumbers from '../WinningNumbers'
-import { processProphesyResponse } from '../../helpers'
+import { processTicketResponse } from '../../helpers'
 import TicketNumber from '../TicketNumber'
 import ClaimPrizesModal from '../ClaimPrizesModal'
 
@@ -108,11 +108,11 @@ const PreviousRoundTicketsInner: React.FC<React.PropsWithChildren<{ performanceI
         fetchUserTicketsForOneRound(account, performanceId),
         fetchPerformance(performanceId),
       ])
-      const processedPerformanceData = processProphesyResponse(perfomanceData)
+      const processedPerformanceData = processTicketResponse(perfomanceData)
       const winningTickets = await getWinningTickets({
         performanceId,
         userTickets,
-        finalProphecy: processedPerformanceData.finalProphecy?.toString(),
+        finalBet: processedPerformanceData.finalBet?.toString(),
       })
 
       setUserWinningTickets({
@@ -167,8 +167,8 @@ const PreviousRoundTicketsInner: React.FC<React.PropsWithChildren<{ performanceI
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" mb="4px">
           {t('Winning prophecy')}
         </Text>
-        {performanceData?.finalProphecy ? (
-          <WinningNumbers number={performanceData.finalProphecy.toString()} />
+        {performanceData?.finalBet ? (
+          <WinningNumbers number={performanceData.finalBet.toString()} />
         ) : (
           <Skeleton width="230px" height="34px" />
         )}

@@ -118,8 +118,8 @@ export const useGDE = (): { reader: Cake; signer: Cake } => {
   const providerOrSigner = useProviderOrSigner(true, true)
   return useMemo(
     () => ({
-      reader: getGDEContract(null),
-      signer: getGDEContract(providerOrSigner),
+      reader: getCakeContract(null),
+      signer: getCakeContract(providerOrSigner),
     }),
     [providerOrSigner],
   )

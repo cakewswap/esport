@@ -7,7 +7,7 @@ import { useLottery } from 'state/lottery/hooks'
 import { fetchLottery } from 'state/lottery/helpers'
 import { LotteryStatus } from 'config/constants/types'
 import RoundSwitcher from './RoundSwitcher'
-import { getDrawnDate, processProphesyResponse } from '../../helpers'
+import { getDrawnDate, processTicketResponse } from '../../helpers'
 import PreviousRoundCardBody from '../PreviousRoundCard/Body'
 import PreviousRoundCardFooter from '../PreviousRoundCard/Footer'
 
@@ -59,7 +59,7 @@ const AllHistoryCard = () => {
 
     const fetchLotteryData = async () => {
       const lotteryData = await fetchLottery(selectedRoundId)
-      const processedLotteryData = processProphesyResponse(lotteryData as any)
+      const processedLotteryData = processTicketResponse(lotteryData as any)
       setSelectedLotteryNodeData(processedLotteryData)
     }
 
