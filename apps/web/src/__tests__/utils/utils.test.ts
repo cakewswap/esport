@@ -39,7 +39,7 @@ describe('getActiveMenuItem', () => {
 
   it('should return undefined if item is not found', () => {
     // Given
-    const pathname = '/corgi'
+    const pathname = '/dge'
 
     // When
     const result = getActiveMenuItem({ pathname, menuConfig: menuConfig(mockT, false, undefined) })
@@ -85,7 +85,7 @@ describe('getActiveSubMenuItem', () => {
 
   it('should return undefined if item is not found', () => {
     // Given
-    const pathname = '/corgi'
+    const pathname = '/dge'
 
     // When
     const result = getActiveSubMenuItem({ pathname, menuItem: menuConfig(mockT, false, undefined)[1] })

@@ -741,7 +741,7 @@ export interface TicketResponse extends ProphesyRoundGenerics {
 export interface BetState {
   currentPerformanceId: string
   latestPerformanceId: string
-  maxPriceProphecyIngde: string
+  maxPriceBetInGde: string
   isTransitioning: boolean
   currentPerformance?: PerformanceRoundGraphEntity & { userTickets?: PerformanceRoundUserTickets }
   home?: Team

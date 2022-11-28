@@ -61,7 +61,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
   const { t } = useTranslation()
   const { theme } = useTheme()
   const {
-    maxPriceProphecyInGde,
+    maxPriceBetInGde,
     currentPerformanceId,
     currentPerformance: {
       priceTicketInGde,
@@ -103,9 +103,9 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
 
   const limitNumberByMaxTicketsPerBuy = useCallback(
     (number: BigNumber) => {
-      return number.gt(maxPriceProphecyInGde) ? maxPriceProphecyInGde : number
+      return number.gt(maxPriceBetInGde) ? maxPriceBetInGde : number
     },
-    [maxPriceProphecyInGde],
+    [maxPriceBetInGde],
   )
 
   const getTicketCostAfterDiscount = useCallback(
@@ -132,14 +132,14 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
 
       if (cakeCostAfterDiscount.gt(userCake)) {
         setUserNotEnoughGDE(true)
-      } else if (limitedNumberTickets.eq(maxPriceProphecyInGde)) {
+      } else if (limitedNumberTickets.eq(maxPriceBetInGde)) {
         setMaxTicketPurchaseExceeded(true)
       } else {
         setUserNotEnoughGDE(false)
         setMaxTicketPurchaseExceeded(false)
       }
     },
-    [limitNumberByMaxTicketsPerBuy, getTicketCostAfterDiscount, maxPriceProphecyInGde, userCake],
+    [limitNumberByMaxTicketsPerBuy, getTicketCostAfterDiscount, maxPriceBetInGde, userCake],
   )
 
   useEffect(() => {
@@ -149,7 +149,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
       let maxPurchase
 
       // If the users' max GDE balance purchase is less than the contract limit - factor the discount logic into the max number of tickets they can purchase
-      if (limitedMaxPurchase.lt(maxPriceProphecyInGde)) {
+      if (limitedMaxPurchase.lt(maxPriceBetInGde)) {
         // Get max tickets purchasable with the users' balance, as well as using the discount to buy tickets
         const { overallTicketBuy: maxPlusDiscountTickets } = getMaxTicketBuyWithDiscount(limitedMaxPurchase)
 
@@ -173,7 +173,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
     }
     getMaxPossiblePurchase()
   }, [
-    maxPriceProphecyInGde,
+    maxPriceBetInGde,
     priceTicketInGde,
     memoisedUserCake,
     limitNumberByMaxTicketsPerBuy,
@@ -246,7 +246,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
   const getErrorMessage = () => {
     if (userNotEnoughCake) return t('Insufficient GDE balance')
     return t('The maximum number of tickets you can buy in one transaction is %maxTickets%', {
-      maxTickets: maxPriceProphecyInGde.toString(),
+      maxTickets: maxPriceBetInGde.toString(),
     })
   }
 

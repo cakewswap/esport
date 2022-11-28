@@ -9,13 +9,13 @@ import { resetUserState } from '../global/actions'
 
 interface PublicPerformanceData {
   latestPerformanceId: string
-  maxPriceProphecyIngde: string
+  maxPriceBetInGde: string
 }
 
 const initialState: BetState = {
   latestPerformanceId: null,
   isTransitioning: false,
-  maxPriceProphecyIngde: null,
+  maxPriceBetInGde: null,
   currentPerformance: {
     performanceId: null,
     status: PerformanceStatus.PENDING,
@@ -131,7 +131,7 @@ export const ProphesySlice = createSlice({
     })
     builder.addCase(fetchLatestPerformanceId.fulfilled, (state, action: PayloadAction<PublicPerformanceData>) => {
       state.latestPerformanceId = action.payload.latestPerformanceId
-      state.maxPriceProphecyInGde = action.payload.maxPriceProphecyInGde
+      state.maxPriceBetInGde = action.payload.maxPriceBetInGde
     })
     builder.addCase(
       fetchUserProphecyAndPerformance.fulfilled,

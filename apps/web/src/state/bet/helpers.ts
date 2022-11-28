@@ -104,23 +104,23 @@ export const fetchLatestPerformanceId = async (): Promise<EthersBigNumber> => {
 
 export const fetchLatestPerformanceIdAndMaxBuy = async () => {
   try {
-    const calls = ['latestPerformanceId', 'maxPriceProphecyInGde'].map((method) => ({
+    const calls = ['latestPerformanceId', 'maxPriceBetInGde'].map((method) => ({
       address: getBetAddress(),
       name: method,
     }))
-    const [[latestPerformanceId], [maxPriceProphecyInGde]] = (await multicallv2({
+    const [[latestPerformanceId], [maxPriceBetInGde]] = (await multicallv2({
       abi: prophesyAbi,
       calls,
     })) as EthersBigNumber[][]
 
     return {
       latestPerformanceId: latestPerformanceId ? latestPerformanceId.toString() : null,
-      maxPriceProphecyIngde: maxPriceProphecyInGde ? maxPriceProphecyInGde.toString() : null,
+      maxPriceBetInGde: maxPriceBetInGde ? maxPriceBetInGde.toString() : null,
     }
   } catch (error) {
     return {
       latestPerformanceId: null,
-      maxPriceProphecyIngde: null,
+      maxPriceBetInGde: null,
     }
   }
 }

@@ -24,12 +24,12 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { maxPriceProphecyInGde, currentPerformanceId } = usePerformance()
+  const { maxPriceBetInGde, currentPerformanceId } = usePerformance()
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const [activeClaimIndex, setActiveClaimIndex] = useState(0)
   const [pendingBatchClaims, setPendingBatchClaims] = useState(
-    Math.ceil(roundsToClaim[activeClaimIndex].ticketsWithUnclaimedRewards.length / maxPriceProphecyInGde.toNumber()),
+    Math.ceil(roundsToClaim[activeClaimIndex].ticketsWithUnclaimedRewards.length / maxPriceBetInGde.toNumber()),
   )
   const prophesyContract = useBetContract()
   const activeClaimData = roundsToClaim[activeClaimIndex]
@@ -56,7 +56,7 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
     activeClaimData.performanceId,
   )
 
-  const shouldBatchRequest = maxPriceProphecyInGde.lt(claimPropheciesCallData.ticketIds.length)
+  const shouldBatchRequest = maxPriceBetInGde.lt(claimPropheciesCallData.ticketIds.length)
 
   const handleProgressToNextClaim = () => {
     if (roundsToClaim.length > activeClaimIndex + 1) {
@@ -70,7 +70,7 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
 
   const getTicketBatches = (ticketIds: string[], brackets: number[]): { ticketIds: string[]; brackets: number[] }[] => {
     const requests = []
-    const maxAsNumber = maxPriceProphecyInGde.toNumber()
+    const maxAsNumber = maxPriceBetInGde.toNumber()
 
     for (let i = 0; i < ticketIds.length; i += maxAsNumber) {
       const ticketIdsSlice = ticketIds.slice(i, maxAsNumber + i)

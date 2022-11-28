@@ -8,19 +8,16 @@ const selectIsTransitioning = (state: State) => state.bet.isTransitioning
 const selectCurrentPerformance = (state: State) => state.bet.currentPerformance
 const selectUserPerformanceData = (state: State) => state.bet.userPerformanceData
 const selectPerformancesData = (state: State) => state.bet.performancesData
-const selectMaxPriceProphecyInGde = (state: State) => state.bet.maxPriceProphecyInGde
+const selectMaxPriceBetInGde = (state: State) => state.bet.maxPriceBetInGde
 
 export const makePerformanceGraphDataByIdSelector = (performanceId: string) =>
   createSelector([selectPerformancesData], (performancesData) =>
     performancesData?.find((performance) => performance.id === performanceId),
   )
 
-export const maxPriceProphecyInGdeSelector = createSelector(
-  [selectMaxPriceProphecyInGde],
-  (maxPriceProphecyInGdeString) => {
-    return new BigNumber(maxPriceProphecyInGdeString)
-  },
-)
+export const maxPriceBetInGdeSelector = createSelector([selectMaxPriceBetInGde], (maxPriceBetInGdeString) => {
+  return new BigNumber(maxPriceBetInGdeString)
+})
 
 export const currentPerformanceSelector = createSelector(
   selectLatestPerformanceId,
@@ -56,7 +53,7 @@ export const prophesySelector = createSelector(
     selectLatestPerformanceId,
     selectUserPerformanceData,
     selectPerformancesData,
-    maxPriceProphecyInGdeSelector,
+    maxPriceBetInGdeSelector,
   ],
   (
     processedCurrentPerformance,
@@ -65,12 +62,12 @@ export const prophesySelector = createSelector(
     latestPerformanceId,
     userPerformanceData,
     performancesData,
-    maxPriceProphecyInGde,
+    maxPriceBetInGde,
   ) => {
     return {
       currentPerformanceId,
       latestPerformanceId,
-      maxPriceProphecyInGde,
+      maxPriceBetInGde,
       isTransitioning,
       userPerformanceData,
       performancesData,
