@@ -10,6 +10,11 @@ export const getAddress = (address: Pool.Address, chainId?: number): string => {
 export const getMasterChefAddress = (chainId?: number) => {
   return getAddress(addresses.masterChef, chainId)
 }
+
+export const getBetAddress = (chainId?: number) => {
+  return getAddress(addresses.bet, chainId)
+}
+
 export const getMasterChefV1Address = () => {
   return getAddress(addresses.masterChefV1)
 }

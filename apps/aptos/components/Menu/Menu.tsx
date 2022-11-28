@@ -145,7 +145,7 @@ export const Menu = ({ children }: { children: ReactNode }) => {
       links={menuItems}
       activeItem={activeMenuItem?.href}
       isDark={isDark}
-      banner={show ? <PhishingWarningBanner /> : undefined}
+      banner={undefined}
       rightSide={
         <>
           <SettingsButton mr="8px" />
@@ -162,7 +162,7 @@ export const Menu = ({ children }: { children: ReactNode }) => {
       subLinks={activeMenuItem?.hideSubNav || activeSubMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
       activeSubItem={activeSubMenuItem?.href}
       toggleTheme={toggleTheme}
-      buyCakeLabel={t('Buy CAKE')}
+      buyCakeLabel={t('Buy GDE')}
     >
       {children}
     </UIMenu>

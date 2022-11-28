@@ -43,6 +43,7 @@ import {
   getNonBscVaultAddress,
   getCrossFarmingSenderAddress,
   getCrossFarmingReceiverAddress,
+  getBetAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -51,6 +52,7 @@ import pancakeBunniesAbi from 'config/abi/pancakeBunnies.json'
 import bunnyFactoryAbi from 'config/abi/bunnyFactory.json'
 import bunnySpecialAbi from 'config/abi/bunnySpecial.json'
 import bep20Abi from 'config/abi/erc20.json'
+import betAbi from 'config/abi/bet.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import cakeAbi from 'config/abi/cake.json'
@@ -165,6 +167,9 @@ export const getContract = ({
   return new Contract(address, abi, signerOrProvider)
 }
 
+export const getBetContract = (signer?: Signer | Provider) => {
+  return getContract({ abi: betAbi, address: getBetAddress(), signer }) as Erc20
+}
 export const getBep20Contract = (address: string, signer?: Signer | Provider) => {
   return getContract({ abi: bep20Abi, address, signer }) as Erc20
 }

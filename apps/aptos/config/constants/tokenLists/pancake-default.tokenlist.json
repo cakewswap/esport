@@ -7,7 +7,7 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://pancakeswap.finance/logo.png",
+  "logoURI": "https://giannidogeesport.com/logo.png",
   "keywords": ["pancake", "default", "aptos"],
   "schema": "aptos",
   "tokens": [
@@ -28,6 +28,14 @@
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/wbtc.png"
     },
     {
+      "name": "GianniDoge Esport",
+      "symbol": "GDE",
+      "chainId": 56,
+      "decimals": 18,
+      "address": "0x742F1fbEC70b81Ed0a32093D0c9054264fd850B2",
+      "logoURI": "/logo.png"
+    },
+    {
       "name": "Dai",
       "symbol": "DAI",
       "chainId": 34,
@@ -41,7 +49,7 @@
       "chainId": 34,
       "decimals": 8,
       "address": "0x8c805723ebc0a7fc5b7d3e7b75d567918e806b3461cb9fa21941a9edc0220bf::devnet_coins::DevnetETH",
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
+      "logoURI": "https://giannidogeesport.com/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
     },
     {
       "name": "USD coin",

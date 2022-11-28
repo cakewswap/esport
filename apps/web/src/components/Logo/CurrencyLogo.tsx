@@ -40,6 +40,10 @@ export default function CurrencyLogo({
     return []
   }, [currency, uriLocations])
 
+  if (currency.symbol === 'GDE') {
+    srcs.push('/logo.png')
+  }
+
   if (currency?.isNative) {
     if (currency.chainId === ChainId.BSC) {
       return <BinanceIcon width={size} style={style} />

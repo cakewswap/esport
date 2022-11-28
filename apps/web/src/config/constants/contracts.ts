@@ -1,6 +1,10 @@
 import { multicallAddresses } from '@pancakeswap/multicall'
 
 export default {
+  bet: {
+    97: '0x06a7F4aB4A9D249AeB981772ADDaF5287a928422',
+    56: '0x06a7F4aB4A9D249AeB981772ADDaF5287a928422',
+  },
   masterChef: {
     97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
     56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',

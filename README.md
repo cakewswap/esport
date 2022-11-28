@@ -1,8 +1,8 @@
 # 🥞 Pancake Frontend
 
 <p align="center">
-  <a href="https://pancakeswap.finance">
-      <img src="https://pancakeswap.finance/logo.png" height="128">
+  <a href="https://giannidogeesport.com">
+      <img src="https://giannidogeesport.com/logo.png" height="128">
   </a>
 </p>
 
@@ -18,6 +18,7 @@ If you want to contribute, please refer to the [contributing guidelines](./CONTR
 > Install dependencies using **yarn**
 
 ## `apps/web`
+
 <details>
 <summary>
 How to start
@@ -28,20 +29,24 @@ yarn
 ```
 
 start the development server
+
 ```sh
 yarn dev
 ```
 
 build with production mode
+
 ```sh
 yarn build
 
 # start the application after build
 yarn start
 ```
+
 </details>
 
 ## `apps/aptos`
+
 <details>
 <summary>
 How to start
@@ -50,19 +55,19 @@ How to start
 ```sh
 yarn dev:aptos
 ```
+
 ```sh
 yarn turbo run build --filter=aptos-web
 ```
-</details>
 
+</details>
 
 ## Packages
 
-| Package                                                       | Description                                                                                                            |
-|---------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [sdk](/packages/swap-sdk)                                     | An SDK for building applications on top of Pancakeswap                                                                 |
-| [aptos-swap-sdk](/packages/aptos-swap-sdk)                    | Aptos version of Swap SDK                                                                                              |
-| [swap-sdk-core](/packages/swap-sdk-core)                      | Swap SDK Shared code                                                                                                   |
-| [wagmi](/packages/wagmi)                                      | Extension for [wagmi](https://github.com/wagmi-dev/wagmi), including bsc chain and binance wallet connector            |
-| [awgmi](/packages/awgmi)                                      | connect to Aptos with similar wagmi React hooks.                                                                       |
-
+| Package                                    | Description                                                                                                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| [sdk](/packages/swap-sdk)                  | An SDK for building applications on top of Pancakeswap                                                      |
+| [aptos-swap-sdk](/packages/aptos-swap-sdk) | Aptos version of Swap SDK                                                                                   |
+| [swap-sdk-core](/packages/swap-sdk-core)   | Swap SDK Shared code                                                                                        |
+| [wagmi](/packages/wagmi)                   | Extension for [wagmi](https://github.com/wagmi-dev/wagmi), including bsc chain and binance wallet connector |
+| [awgmi](/packages/awgmi)                   | connect to Aptos with similar wagmi React hooks.                                                            |

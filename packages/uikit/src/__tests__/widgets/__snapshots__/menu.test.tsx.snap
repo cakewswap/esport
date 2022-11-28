@@ -1386,7 +1386,7 @@ exports[`renders correctly 1`] = `
           >
             <a
               class="c26"
-              href="https://pancakeswap.finance/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
+              href="https://giannidogeesport.com/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
               target="_blank"
             >
               <svg
@@ -3721,7 +3721,7 @@ exports[`renders correctly 1`] = `
           >
             <a
               class="c54"
-              href="https://pancakeswap.finance/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
+              href="https://giannidogeesport.com/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
               target="_blank"
             >
               <svg
@@ -3786,7 +3786,7 @@ exports[`renders correctly 1`] = `
           <a
             class="c56"
             data-theme="light"
-            href="https://pancakeswap.finance/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
+            href="https://giannidogeesport.com/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82&chainId=56"
             scale="sm"
             target="_blank"
           >

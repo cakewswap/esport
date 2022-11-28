@@ -5,7 +5,15 @@ import { Token } from '@pancakeswap/sdk'
 import { SerializedWrappedToken } from '@pancakeswap/token-lists'
 import { Pool } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { CampaignType, FetchStatus, LotteryStatus, LotteryTicket, Team, TranslatableText } from 'config/constants/types'
+import {
+  CampaignType,
+  FetchStatus,
+  LotteryStatus,
+  LotteryTicket,
+  PerformanceStatus,
+  Team,
+  TranslatableText,
+} from 'config/constants/types'
 import { NftToken } from './nftMarket/types'
 
 export enum GAS_PRICE {
@@ -619,4 +627,38 @@ export interface State {
   predictions: PredictionsState
   lottery: LotteryState
   pottery: PotteryState
+}
+
+export interface PerformanceResponse extends PerformanceRoundGenerics {
+  id?: string
+  amountCollected: SerializedBigNumber
+  amountWinCollected: SerializedBigNumber
+  amountDrawCollected: SerializedBigNumber
+  amountLoseCollected: SerializedBigNumber
+}
+
+interface PerformanceRoundGenerics {
+  isLoading?: boolean
+  performanceId: string
+  status: PerformanceStatus
+  startTime: string
+  endTime: string
+  treasuryFee: string
+  finalProphecy: string
+  home?: Team
+  away?: Team
+  homeGoal?: number
+  awayGoal?: number
+}
+
+export interface PerformanceRound extends PerformanceRoundGenerics {
+  priceTicketIngde: SerializedBigNumber
+  discountDivisor: SerializedBigNumber
+  amountCollected: SerializedBigNumber
+  amountWinCollected: SerializedBigNumber
+  amountDrawCollected: SerializedBigNumber
+  amountLoseCollected: SerializedBigNumber
+  cakePerBracket: SerializedBigNumber[]
+  countWinnersPerBracket: SerializedBigNumber[]
+  rewardsBreakdown: SerializedBigNumber[]
 }

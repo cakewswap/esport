@@ -12,4 +12,5 @@ export const STARGATE_JS = {
   integrity: `sha384-${SHA384}`,
 }
 
-export const CHAINS_STARGATE = [mainnet, arbitrum, optimism, polygon, avalandche, fantomOpera]
+// export const CHAINS_STARGATE = [mainnet, arbitrum, optimism, polygon, avalandche, fantomOpera]
+export const CHAINS_STARGATE = [mainnet]

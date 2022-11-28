@@ -221,7 +221,7 @@ export const bscTokens = {
     18,
     'SYRUP',
     'SyrupBar Token',
-    'https://pancakeswap.finance/',
+    'https://giannidogeesport.com/',
   ),
   pha: new ERC20Token(
     ChainId.BSC,

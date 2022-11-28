@@ -66,7 +66,7 @@ export const wallets: WalletConfigV2<ConnectorNames>[] = [
   {
     id: 'trustWallet',
     title: 'Trust Wallet',
-    icon: 'https://pancakeswap.finance/images/wallets/trust.png',
+    icon: 'https://giannidogeesport.com/images/wallets/trust.png',
     get installed() {
       return typeof window !== 'undefined' && isIOS && Boolean(window.aptos) && Boolean((window.aptos as any)?.isTrust)
     },
@@ -78,7 +78,7 @@ export const wallets: WalletConfigV2<ConnectorNames>[] = [
   {
     id: 'safePal',
     title: 'SafePal',
-    icon: 'https://pancakeswap.finance/images/wallets/safepal.png',
+    icon: 'https://giannidogeesport.com/images/wallets/safepal.png',
     get installed() {
       return typeof window !== 'undefined' && Boolean(window.safePal) && Boolean((window.safePal as any)?.sfpPlatform)
     },

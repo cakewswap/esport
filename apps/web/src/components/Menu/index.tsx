@@ -47,7 +47,7 @@ const Menu = (props) => {
             <UserMenu />
           </>
         }
-        banner={showPhishingWarningBanner && typeof window !== 'undefined' && <PhishingWarningBanner />}
+        banner={undefined}
         isDark={isDark}
         toggleTheme={toggleTheme}
         currentLang={currentLanguage.code}
@@ -59,7 +59,7 @@ const Menu = (props) => {
         footerLinks={getFooterLinks}
         activeItem={activeMenuItem?.href}
         activeSubItem={activeSubMenuItem?.href}
-        buyCakeLabel={t('Buy CAKE')}
+        buyCakeLabel={t('Buy GDE')}
         {...props}
       />
     </>

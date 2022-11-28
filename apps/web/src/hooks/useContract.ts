@@ -12,7 +12,7 @@ import {
 import zapAbi from 'config/abi/zap.json'
 import { useProviderOrSigner } from 'hooks/useProviderOrSigner'
 import { useMemo } from 'react'
-import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
+import { getBetAddress, getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
   getAnniversaryAchievementContract,
   getBCakeFarmBoosterContract,
@@ -75,10 +75,16 @@ import { getContract } from 'utils'
 import { IPancakePair } from 'config/abi/types/IPancakePair'
 import { VaultKey } from 'state/types'
 import { useActiveChainId } from './useActiveChainId'
+import { getBetContract } from '../utils/contractHelpers'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
+
+export const useBetContract = () => {
+  const { data: signer } = useSigner()
+  return useMemo(() => getBetContract(signer), [signer])
+}
 
 export const useIfoV1Contract = (address: string) => {
   const { data: signer } = useSigner()
@@ -106,6 +112,17 @@ export const useERC20 = (address: string, withSignerIfPossible = true) => {
 export const useERC721 = (address: string, withSignerIfPossible = true) => {
   const providerOrSigner = useProviderOrSigner(withSignerIfPossible)
   return useMemo(() => getErc721Contract(address, providerOrSigner), [address, providerOrSigner])
+}
+
+export const useGDE = (): { reader: Cake; signer: Cake } => {
+  const providerOrSigner = useProviderOrSigner(true, true)
+  return useMemo(
+    () => ({
+      reader: getGDEContract(null),
+      signer: getGDEContract(providerOrSigner),
+    }),
+    [providerOrSigner],
+  )
 }
 
 export const useCake = (): { reader: Cake; signer: Cake } => {

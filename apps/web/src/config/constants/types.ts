@@ -216,3 +216,32 @@ export type ITrade =
   | undefined
 
 export type V2TradeAndStableSwap = Trade<Currency, Currency, TradeType> | StableTrade | undefined
+
+export enum PerformanceStatus {
+  PENDING = 'pending',
+  OPEN = 'open',
+  CLOSE = 'close',
+  CLAIMABLE = 'claimable',
+}
+
+export enum PerformanceBet {
+  WIN = 1,
+  DRAW = 2,
+  LOSE = 3,
+}
+
+export interface PerformanceTicket {
+  id: string
+  number: string
+  status: boolean
+  amount?: number
+  performanceId?: string
+  GDEReward?: string
+}
+
+export interface PerformanceTicketClaimData {
+  ticketsWithUnclaimedRewards: PerformanceTicket[]
+  allWinningTickets: PerformanceTicket[]
+  GDETotal: BigNumber
+  performanceId: string
+}

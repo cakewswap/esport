@@ -75,7 +75,7 @@ export function Menu() {
   return (
     <Flex height="56px" bg="backgroundAlt" px="16px" alignItems="center" justifyContent="space-between" zIndex={9}>
       <Flex>
-        <Logo href="https://pancakeswap.finance" />
+        <Logo href="https://giannidogeesport.com" />
 
         <Flex pl={['25px', null, '50px']}>
           <Box display={['none', null, 'flex']}>
@@ -83,7 +83,7 @@ export function Menu() {
               <StyledMenuItem $isActive>Bridge</StyledMenuItem>
             </NextLink>
           </Box>
-          <StyledMenuItem href="https://pancakeswap.finance/swap">Swap</StyledMenuItem>
+          <StyledMenuItem href="https://giannidogeesport.com/swap">Swap</StyledMenuItem>
         </Flex>
       </Flex>
       <Flex alignItems="center">

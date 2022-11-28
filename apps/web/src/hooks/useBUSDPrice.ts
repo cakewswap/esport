@@ -183,3 +183,14 @@ export const useBNBBusdPrice = (
   const wbnb: Token = isTestnet ? WBNB[ChainId.BSC_TESTNET] : WBNB[ChainId.BSC]
   return usePriceByPairs(BUSD[wbnb.chainId], wbnb)
 }
+
+// @Note: only fetch from one pair
+export const useGDEBusdPrice = (
+  { forceMainnet } = { forceMainnet: false },
+): Price<ERC20Token, ERC20Token> | undefined => {
+  const { chainId } = useActiveChainId()
+  const isTestnet = !forceMainnet && isChainTestnet(chainId)
+  // Return bsc testnet cake if chain is testnet
+  const cake: Token = isTestnet ? CAKE[ChainId.BSC_TESTNET] : CAKE[ChainId.BSC]
+  return usePriceByPairs(BUSD[cake.chainId], cake)
+}
