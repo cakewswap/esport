@@ -63,14 +63,9 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
   const {
     maxPriceBetInGde,
     currentPerformanceId,
-    currentPerformance: {
-      priceTicketInGde,
-      discountDivisor,
-      home,
-      away,
-      userTickets: { performances: userCurrentTickets },
-    },
+    currentPerformance: { priceTicketInGde, discountDivisor, home, away },
   } = usePerformance()
+
   const { callWithMarketGasPrice } = useCallWithMarketGasPrice()
   const [ticketsToBuy, setTicketsToBuy] = useState('1')
   const [totalCost, setTotalCost] = useState('')
@@ -130,7 +125,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
       const limitedNumberTickets = limitNumberByMaxTicketsPerBuy(inputNumber)
       const cakeCostAfterDiscount = getTicketCostAfterDiscount(limitedNumberTickets)
 
-      if (cakeCostAfterDiscount.gt(userCake)) {
+      if (cakeCostAfterDiscount?.gt(userCake)) {
         setUserNotEnoughGDE(true)
       } else if (limitedNumberTickets.eq(maxPriceBetInGde)) {
         setMaxTicketPurchaseExceeded(true)
@@ -185,7 +180,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
   useEffect(() => {
     const numberOfTicketsToBuy = new BigNumber(ticketsToBuy)
     const costAfterDiscount = getTicketCostAfterDiscount(numberOfTicketsToBuy)
-    setTotalCost(costAfterDiscount.gt(0) ? getFullDisplayBalance(costAfterDiscount) : '0')
+    setTotalCost(costAfterDiscount?.gt(0) ? getFullDisplayBalance(costAfterDiscount) : '0')
   }, [ticketsToBuy, priceTicketInGde, discountDivisor, getTicketCostAfterDiscount])
 
   const getNumTicketsByPercentage = (percentage: number): number => {
@@ -230,7 +225,7 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
         )
       },
       onConfirm: () => {
-        return callWithMarketGasPrice(prophesyContract, 'prophecyRelease', [
+        return callWithMarketGasPrice(prophesyContract, 'bet', [
           currentPerformanceId,
           prophesyStage,
           getDecimalAmount(new BigNumber(ticketsToBuy), 18).toString(),
@@ -254,13 +249,13 @@ const ProphecyModal: React.FC<React.PropsWithChildren<ProphecyModalProps>> = ({ 
     !isApproved || isConfirmed || userNotEnoughCake || !ticketsToBuy || new BigNumber(ticketsToBuy).lte(0)
 
   return (
-    <StyledModal title={t('Prophesy')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
+    <StyledModal title={t('Bet Now')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
-        <Text color="textSubtle">{t('Release')}:</Text>
+        <Text color="textSubtle">{t('Ticket')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Text mr="4px" bold>
-            {t('Winner?')}
+            {t('Amount?')}
           </Text>
           <Ticket />
         </Flex>

@@ -87,13 +87,13 @@ const NextDrawCard = () => {
       <StyledCard>
         <CardHeader p="16px 24px">
           <Flex justifyContent="space-between">
-            <Heading mr="12px">{t('Next Performance')}</Heading>
+            <Heading mr="12px">{t('Next Matches')}</Heading>
           </Flex>
         </CardHeader>
         <CardBody>
           <Grid>
             <Flex justifyContent={['center', null, null, 'flex-start']}>
-              <Heading>{t('Performance')}:</Heading>
+              <Heading>{t('Matches')}:</Heading>
             </Flex>
             <Flex flexDirection="column" mb="20px">
               <Flex flexDirection="row" flexWrap="wrap" mb="20px">
@@ -164,7 +164,7 @@ const NextDrawCard = () => {
       <StyledCard mt="30px">
         <CardHeader p="16px 24px">
           <Flex justifyContent="space-between">
-            <Heading mr="12px">{t('Over Performance')}</Heading>
+            <Heading mr="12px">{t('Over Matches')}</Heading>
           </Flex>
         </CardHeader>
         <CardBody>

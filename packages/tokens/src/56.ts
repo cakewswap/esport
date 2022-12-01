@@ -13,6 +13,7 @@ export const bscTokens = {
     'https://www.binance.com/',
   ),
   cake: CAKE_MAINNET,
+  gde: CAKE_MAINNET,
   gmi: new ERC20Token(
     ChainId.BSC,
     '0x93D8d25E3C9A847a5Da79F79ecaC89461FEcA846',

@@ -149,5 +149,6 @@ export const usePriceCakeBusd = ({ forceMainnet } = { forceMainnet: false }): Bi
 
 export const usePriceGDEBusd = ({ forceMainnet } = { forceMainnet: false }): BigNumber => {
   const price = useGDEBusdPrice({ forceMainnet })
+
   return useMemo(() => (price ? new BigNumber(price.toSignificant(6)) : BIG_ZERO), [price])
 }

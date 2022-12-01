@@ -192,5 +192,6 @@ export const useGDEBusdPrice = (
   const isTestnet = !forceMainnet && isChainTestnet(chainId)
   // Return bsc testnet cake if chain is testnet
   const cake: Token = isTestnet ? CAKE[ChainId.BSC_TESTNET] : CAKE[ChainId.BSC]
+
   return usePriceByPairs(BUSD[cake.chainId], cake)
 }

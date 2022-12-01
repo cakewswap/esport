@@ -207,7 +207,7 @@ const Hero = () => {
 
   const { currentPerformance } = usePerformance()
 
-  const { amountCollected, amountWinCollected, amountDrawCollected, amountLoseCollected, status } = currentPerformance
+  const { amountWinCollected, amountDrawCollected, amountLoseCollected, status } = currentPerformance
 
   const prizeWinInBusd = amountWinCollected.times(gdePriceBusd)
   const prizeDrawInBusd = amountDrawCollected.times(gdePriceBusd)
@@ -231,7 +231,10 @@ const Hero = () => {
               />
             )}
             <Heading mb="32px" scale="md" color="#ffffff">
-              {t('Home!')}
+              {getBalanceNumber(amountWinCollected)} GDE
+            </Heading>
+            <Heading mb="32px" scale="md" color="#ffffff">
+              {currentPerformance?.home?.name}
             </Heading>
           </ProphesyItem>
           <ProphesyItem>
@@ -247,6 +250,9 @@ const Hero = () => {
                 decimals={2}
               />
             )}
+            <Heading mb="32px" scale="md" color="#ffffff">
+              {getBalanceNumber(amountDrawCollected)} GDE
+            </Heading>
             <Heading mb="32px" scale="md" color="#ffffff">
               {t('Draw!')}
             </Heading>
@@ -265,7 +271,10 @@ const Hero = () => {
               />
             )}
             <Heading mb="32px" scale="md" color="#ffffff">
-              {t('Away!')}
+              {getBalanceNumber(amountLoseCollected)} GDE
+            </Heading>
+            <Heading mb="32px" scale="md" color="#ffffff">
+              {currentPerformance?.away?.name}
             </Heading>
           </ProphesyItem>
         </ProphesyRate>
