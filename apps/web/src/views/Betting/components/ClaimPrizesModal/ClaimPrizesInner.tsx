@@ -84,7 +84,7 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
   const handleClaim = async () => {
     const { performanceId, ticketIds } = claimPropheciesCallData
     const receipt = await fetchWithCatchTxError(() => {
-      return callWithEstimateGas(prophesyContract, 'claimProphecies', [performanceId, ticketIds])
+      return callWithEstimateGas(prophesyContract, 'claimBetting', [performanceId, ticketIds])
     })
     if (receipt?.status) {
       toastSuccess(
@@ -106,7 +106,7 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
     for (const ticketBatch of ticketBatches) {
       /* eslint-disable no-await-in-loop */
       const receipt = await fetchWithCatchTxError(() => {
-        return callWithEstimateGas(prophesyContract, 'claimProphecies', [performanceId, ticketBatch.ticketIds])
+        return callWithEstimateGas(prophesyContract, 'claimBetting', [performanceId, ticketBatch.ticketIds])
       })
 
       if (receipt?.status) {

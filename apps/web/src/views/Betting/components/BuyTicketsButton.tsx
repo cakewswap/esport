@@ -21,11 +21,11 @@ const ProphecyButton: React.FC<React.PropsWithChildren<ProphecyButtonProps>> = (
     }
 
     if (status === PerformanceStatus.PENDING) {
-      return t('Prophecy Soon')
+      return t('Bet Soon')
     }
 
     if (status === PerformanceStatus.CLOSE || parseInt(startTime, 10) <= Date.now()) {
-      return t('Performace started')
+      return t('Match started')
     }
 
     return (

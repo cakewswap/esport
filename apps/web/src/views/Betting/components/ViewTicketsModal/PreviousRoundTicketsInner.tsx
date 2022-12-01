@@ -140,6 +140,8 @@ const PreviousRoundTicketsInner: React.FC<React.PropsWithChildren<{ performanceI
   }, [performanceId, account])
 
   const getFooter = () => {
+    console.log('userWinningTickets:', userWinningTickets)
+
     if (userWinningTickets?.ticketsWithUnclaimedRewards?.length > 0) {
       return (
         <Button onClick={onPresentClaimModal} mt="24px" width="100%">
@@ -147,6 +149,7 @@ const PreviousRoundTicketsInner: React.FC<React.PropsWithChildren<{ performanceI
         </Button>
       )
     }
+
     if (!userWinningTickets.allWinningTickets) {
       return (
         <div ref={targetRef}>
@@ -165,7 +168,7 @@ const PreviousRoundTicketsInner: React.FC<React.PropsWithChildren<{ performanceI
       {tooltipVisible && tooltip}
       <TopBox>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" mb="4px">
-          {t('Winning prophecy')}
+          {t('Winning ticket')}
         </Text>
         {performanceData?.finalBet ? (
           <WinningNumbers number={performanceData.finalBet.toString()} />

@@ -32,7 +32,7 @@ const ViewTicketsModal: React.FC<React.PropsWithChildren<ViewTicketsModalProps>>
 
   return (
     <StyledModal
-      title={`${t('Performance')} #${performanceId}`}
+      title={`${t('Match')} #${performanceId}`}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradientCardHeader}
     >

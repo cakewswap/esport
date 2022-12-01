@@ -25,7 +25,7 @@ const fetchGDERewardsForTickets = async (
   const calls = winningTickets.map((winningTicket) => {
     const { performanceId, id } = winningTicket
     return {
-      name: 'viewRewardsForProphecyId',
+      name: 'viewRewardsForBetId',
       address: prophesyAddress,
       params: [performanceId, id],
     }
